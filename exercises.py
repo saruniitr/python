@@ -5,6 +5,8 @@
 
 import sys
 import functools
+import math
+import re
 from collections import Counter
 
 def isogram(str):
@@ -111,11 +113,36 @@ def find_missing_letter(chars):
     # char is missing in the sequence, we need to find it
     return [str(chr(ord(y) - 1)) for x, y in list(zip(chars[:-1], chars[1:])) if (ord(y) - ord(x)) > 1][0]
 
+def compare(array1, array2):
+    if (array1 is None) or (array2 is None):
+        return False;
+
+    a = set(array1)
+    b = set([math.sqrt(i) for i in array2])
+
+    return ((len(a) == len(b)) and (len(a - b) == 0))
+
+
+def valid_parenthesis(str):
+    count = 0;
+
+    for i in str:
+        if i == '(':
+            count += 1;
+        if i == ')':
+            count -= 1;
+        if count < 0:
+            return False;
+
+    return count == 0;
+
+
+
 def practice():
     # print(get_vowel_count('abracadabra'));
     # tribonacci([1, 1, 1], 1);
     # print(DNA_strand ("GTAT"));
-    print(find_missing_letter(['a', 'c']));
+
 
 if __name__ == "__main__":
     practice();
