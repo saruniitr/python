@@ -60,7 +60,7 @@ def persistence(n):
 
 def duplicate_count(text):
     d = Counter(text);
-    
+
     count = 0;
     for k, v in d.items():
         count = count + (v > 1);
@@ -88,11 +88,34 @@ def DNA_strand(dna):
     d = {'A': 'T', 'T': 'A', 'G': 'C', 'C': 'G'};
     return ''.join([d[c] for c in dna])
 
+def narcissistic(value):
+    # if sum of power of each digit raised to length of number equals value
+    # then it is narcissistic
+    # eg: 153 = 1^3 + 5^3 + 3^3 = 153
+    return sum([int(d)**len(str(abs(value))) for d in str(value)]) == value;
+
+def dig_pow(n, p):
+    # eg (89, 1) => 8^1 + 9^2 = 89 * 1 so output is 1
+    length = len(str(abs(n)));
+    powers = list(range(p, p+length))
+
+    total = sum(int(i)**j for i, j in list(zip(str(n), powers)));
+
+    if not(total % n):
+        return total // n;
+    else:
+        return -1;
+
+def find_missing_letter(chars):
+    # chars is sequence of consecutive letters except that one
+    # char is missing in the sequence, we need to find it
+    return [str(chr(ord(y) - 1)) for x, y in list(zip(chars[:-1], chars[1:])) if (ord(y) - ord(x)) > 1][0]
 
 def practice():
     # print(get_vowel_count('abracadabra'));
     # tribonacci([1, 1, 1], 1);
-    print(DNA_strand ("GTAT"));
+    # print(DNA_strand ("GTAT"));
+    print(find_missing_letter(['a', 'c']));
 
 if __name__ == "__main__":
     practice();
