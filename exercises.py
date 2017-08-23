@@ -136,12 +136,33 @@ def valid_parenthesis(str):
 
     return count == 0;
 
+def validBraces(string):
+    d = {')': '(', '}': '{', ']': '['}
+    b = ['[', '(', '{', '}', ')', ']']
+
+    braces = ''.join([s for s in string if s in set(b)])
+    print(braces)
+
+    l = [];
+
+    for c in braces:
+        if c in '[({':
+            l.append(c);
+        if c in '})]':
+            if not(len(l)):
+                return False;
+
+            top = l[-1];
+            return False if top != d[c] else l.pop();
+
+    return len(l) == 0;
 
 
 def practice():
     # print(get_vowel_count('abracadabra'));
     # tribonacci([1, 1, 1], 1);
     # print(DNA_strand ("GTAT"));
+    print(validBraces(")]"));
 
 
 if __name__ == "__main__":
