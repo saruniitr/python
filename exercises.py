@@ -157,13 +157,51 @@ def validBraces(string):
 
     return len(l) == 0;
 
+def decode_roman(roman):
+    d = {'I': 1, 'V':5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}
+    sum = 0;
+    prev = 0;
+    roman = roman[::-1];
+
+    for r in roman:
+        val = d[r];
+
+        if val < prev:
+            val = -val;
+
+        prev = val;
+        sum += val;
+
+    return sum;
+
+def validIP(str):
+    ip = str.split('.')
+
+    if not(b.isdigit()) or len(ip) != 4:
+        return False;
+    for b in ip:
+        if int(b) <= 0 or int(b) > 255:
+            return False;
+
+    return True;
+
+def word_frequency(filename):
+    d = dict();
+    with open(filename, 'r') as lines:
+        for line in lines:
+            for word in line.split():
+                d[word] = d.get(word, 0) + 1;
+
+    return d;
+
+
 
 def practice():
     # print(get_vowel_count('abracadabra'));
     # tribonacci([1, 1, 1], 1);
     # print(DNA_strand ("GTAT"));
-    print(validBraces(")]"));
+    word_frequency('exercises.py');
 
 
 if __name__ == "__main__":
-    practice();
+	practice();
