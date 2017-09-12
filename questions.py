@@ -40,3 +40,27 @@ score = [40, 50, 35, 50, 45]
 l = list(zip(team, score))
 print('list of zip: ', l)
 print('unzip: ', list(zip(*l)))
+
+
+def remove_duplicates():
+	"""
+	removing duplicates in a list
+	"""
+	l = [5, 6, 5, 5, 1, 2, 3, 4, 4, 9, 8, 3, 12, 14, 7, 10, 20, 8]
+	print('original list:', l)
+	# method1 - using set() but it changes the order
+	print('Method1 using set() but it changes order:', list(set(l)))
+
+	# method 2 - doesn't change order
+	unique = []
+	visited = set()
+	for x in l:
+		if x not in visited:
+			unique.append(x)
+			visited.add(x)
+
+	print('Method2 with order restored:', unique)
+
+
+if __name__ == "__main__":
+	remove_duplicates()
