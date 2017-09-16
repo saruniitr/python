@@ -3,6 +3,8 @@
 #
 
 import functools
+import math
+from collections import namedtuple
 
 # Dictionary comprehension
 print('\nDictionary comprehension')
@@ -61,6 +63,19 @@ def remove_duplicates():
 
 	print('Method2 with order restored:', unique)
 
+def named_tuples():
+	"""
+	Demonstrates named tuples which are like struct in C
+	where in we can define a tuple with a name and give names
+	to the members as well
+	"""
+	Point = namedtuple('Point', 'x y')
+
+	pt1 = Point(1, 0)
+	pt2 = Point(4, 4)
+
+	distance = math.sqrt((pt1.x - pt2.x)**2 + (pt1.y - pt2.y)**2)
+	return distance
 
 if __name__ == "__main__":
-	remove_duplicates()
+	print(named_tuples())
